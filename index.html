@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miriyala Harshini – Portfolio</title>
+  <meta name="description" content="Portfolio website for a budding Software Developer showcasing experience, projects, skills, certifications and activities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --surface: #111418;
+      --muted: #9aa4af;
+      --text: #e9eef2;
+      --brand: #6ec1ff;
+      --brand-2: #a78bfa;
+      --ok: #4ade80;
+      --warn: #fbbf24;
+      --danger: #fb7185;
+      --card: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      --ring: 0 0 0 8px rgba(110, 193, 255, 0.15);
+      --radius: 18px;
+      --shadow-1: 0 10px 30px rgba(0,0,0,0.35);
+      --shadow-2: 0 20px 60px rgba(0,0,0,0.45);
+    }
+    /* Light mode */
+    .light {
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --muted: #5f6b77;
+      --text: #111418;
+      --brand: #2563eb;
+      --brand-2: #7c3aed;
+      --card: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
+      --ring: 0 0 0 8px rgba(37,99,235,0.12);
+      --shadow-1: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-2: 0 18px 50px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(110,193,255,0.12), transparent 60%),
+                  radial-gradient(900px 500px at 100% 0%, rgba(167,139,250,0.10), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: min(1120px, 92vw); margin: 0 auto; }
+
+    header.nav {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 6px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight: 800; letter-spacing: 0.2px; }
+    .brand .logo { width: 34px; height: 34px; display:grid; place-items:center; border-radius: 10px; background:
+      radial-gradient(circle at 30% 30%, var(--brand), transparent 60%),
+      radial-gradient(circle at 70% 70%, var(--brand-2), transparent 60%),
+      var(--surface); box-shadow: var(--shadow-1); border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-links { display:flex; gap: 18px; align-items:center; flex-wrap: wrap; }
+    .nav-links a { padding: 8px 12px; border-radius: 12px; font-weight: 500; opacity: .9; }
+    .nav-links a:hover { background: var(--card); text-decoration:none; opacity: 1; }
+
+    .btn { display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: 14px; border:1px solid rgba(255,255,255,0.08); background: var(--surface); box-shadow: var(--shadow-1); font-weight: 600; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-2); text-decoration: none; }
+
+    .hero { padding: 72px 0 38px; display:grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+    .hero .card { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: calc(var(--radius) + 6px); padding: 28px; box-shadow: var(--shadow-2); }
+    .kicker { display:inline-block; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1.08; margin: 0 0 14px; }
+    .lead { font-size: clamp(16px, 2.3vw, 19px); color: var(--muted); }
+
+    .hero .stats { display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+    .stat { background: var(--surface); border:1px solid rgba(255,255,255,0.08); padding: 16px; border-radius: 14px; text-align:center; }
+    .stat b { font-size: 22px; }
+    .tagline { margin-top: 16px; font-weight: 600; }
+
+    section { padding: 24px 0 8px; }
+    section h2 { font-size: clamp(22px, 3vw, 28px); margin: 10px 0 16px; }
+
+    .grid { display:grid; gap: 16px; }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media (max-width: 940px) {
+      .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
+    }
+
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-1); }
+    .card .title { font-weight: 700; font-size: 18px; }
+    .card .sub { color: var(--muted); font-size: 14px; }
+
+    .timeline { position: relative; padding-left: 22px; }
+    .timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: color-mix(in oklab, var(--brand), var(--brand-2) 40%); opacity: .35; }
+    .timeline-item { position: relative; margin-bottom: 16px; }
+    .timeline-item::marker { content: ""; }
+    .dot { position: absolute; left: -1px; top: 4px; width: 12px; height: 12px; background: linear-gradient(180deg, var(--brand), var(--brand-2)); border-radius: 999px; box-shadow: 0 0 0 6px rgba(110,193,255,0.15); border: 2px solid var(--surface); }
+
+    .skill-group { display:flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 8px 12px; border-radius: 999px; border:1px solid rgba(255,255,255,0.10); background: var(--surface); font-weight: 600; font-size: 14px; }
+
+    .project { display:grid; gap: 10px; }
+    .project .actions { display:flex; gap: 10px; flex-wrap: wrap; }
+
+    .footer { padding: 40px 0 60px; color: var(--muted); text-align:center; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    /* Print-friendly */
+    @media print {
+      header.nav, .theme-toggle, .btn, .actions, .badge { display:none !important; }
+      body { background: #fff; color: #000; }
+      .card, .stat { box-shadow: none; background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" role="navigation">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Software Developer Portfolio</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#activities">Activities</a>
+        <a href="#csp">Community</a>
+        <a href="#interests">Interests</a>
+        <a href="#contact" class="btn">Contact</a>
+        <button class="btn theme-toggle" id="themeToggle" aria-pressed="false" title="Toggle theme">
+          <span aria-hidden="true">🌓</span> <span>Theme</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <!-- HERO -->
+    <section class="hero" aria-label="Introduction">
+      <div class="card">
+        <span class="kicker">Career Objective</span>
+        <h1>Software Developer — Early Career</h1>
+        <p class="lead">
+          To secure a Software Developer role at a reputed software organization where my programming skills are
+          productively utilized for the growth of the organization and my career advancement.
+        </p>
+        <p class="tagline">Open to: Python, Web Development, and ML/AI internship or entry-level roles.</p>
+        <div class="hero-actions" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#projects" aria-label="View projects">View Projects</a>
+          <a class="btn" href="#contact" aria-label="Contact me">Hire Me</a>
+          <button class="btn" onclick="window.print()" aria-label="Print or save PDF">Print / Save PDF</button>
+        </div>
+        <div class="stats" role="list">
+          <div class="stat" role="listitem"><b>Python</b><br><small>Internship + Projects</small></div>
+          <div class="stat" role="listitem"><b>Web</b><br><small>HTML + Basics</small></div>
+          <div class="stat" role="listitem"><b>ML / AI</b><br><small>Foundations</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <div class="card">
+        <p>
+          I am a motivated Computer Science student with hands-on experience from internships and mini-projects in Python.
+          I enjoy building practical tools—like trackers for expenses and student performance—and I’m growing my skills in
+          web development and machine learning. I communicate clearly, learn quickly, and thrive when collaborating.
+        </p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+      <ol class="timeline" role="list">
+        <li class="timeline-item">
+          <span class="dot" aria-hidden="true"></span>
+          <div class="card">
+            <div class="title">Python Programming Intern — Vault of Codes</div>
+            <div class="sub">Virtual • July 1, 2025 – July 31, 2025</div>
+            <p>
+              Completed a one-month internship focused on Python programming. Strengthened application skills
+              and implemented learning through mini-projects.
+            </p>
+            <ul>
+              <li>Applied data structures, file handling, and basic data analysis in Python.</li>
+              <li>Built mini projects to practice problem-solving and code organization.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="proj-h">
+      <h2 id="proj-h">Projects</h2>
+      <div class="grid cols-2">
+        <article class="card project" aria-labelledby="p1-title">
+          <div class="title" id="p1-title">Personal Expense Tracker</div>
+          <div class="sub">Python • CLI / File-based</div>
+          <p>
+            Built a tracker that lets users log daily expenses, view summaries, and analyze spending trends over time.
+            Implemented data structures, file handling, and simple analytics for insights.
+          </p>
+          <ul>
+            <li>Daily logging with categories & notes</li>
+            <li>Monthly/weekly summaries</li>
+            <li>CSV export-ready data design</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#contact">Request Demo</a>
+          </div>
+        </article>
+        <article class="card project" aria-labelledby="p2-title">
+          <div class="title" id="p2-title">Student Performance Tracker</div>
+          <div class="sub">Python • OOP • Web (planned)</div>
+          <p>
+            A Python application to help teachers track student performance across subjects. Roadmap includes converting
+            it to a web-based app for broader accessibility and deployment.
+          </p>
+          <ul>
+            <li>Uses loops, conditionals, functions, and OOP</li>
+            <li>Modular design for easy web migration</li>
+            <li>Plan: Deploy as a Python web app</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#contact">Discuss Features</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMMUNITY SERVICE PROJECT -->
+    <section id="csp" aria-labelledby="csp-h">
+      <h2 id="csp-h">Community Service Project — Plant Diseases</h2>
+      <div class="card">
+        <div class="sub">Group of 4 • 3rd-year, 1st-semester • October 2025 (planned/ongoing)</div>
+        <p>
+          Visited a nearby village to learn directly from farmers about plant diseases, and shared tips to help reduce
+          issues. Findings compiled and presented to the Faculty In-Charge at college.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <div class="title">Technical</div>
+          <div class="skill-group" aria-label="Technical skills">
+            <span class="chip">Python</span>
+            <span class="chip">HTML</span>
+            <span class="chip">AI (Foundations)</span>
+            <span class="chip">Machine Learning (Basics)</span>
+            <
